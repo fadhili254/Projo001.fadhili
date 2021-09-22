@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>log in</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+{% include 'navbar.html' %}
+<br><br>
+<div class="container">
+    <b style="color:red;">{{error}}</b>
+    <b style="color:green;">{{success}}</b>
+    <b style="color:red">{{error}}</b>
+    <section class="row">
+        <div class="col-md-4">
+            <h3>LOG IN</h3>
+            <form action="/log-in" method="post">
+                <input type="email" name="customer_email" placeholder="Your Email" class="form-control">
+                <br>
+                <input type="password" name="customer_password" placeholder="Your Password" class="form-control">
+                <br>
+                <input type="submit" value="login" class="btn btn-outline-success">
+            </form>
+            <br>
+
+            <a href="">New User?, Create Account</a>
+        </div>
+        <div class="col-md-8">
+            <img src="../static/snicker 1.png" alt="" class="image-fluid">
+        </div>
+    </section>
+</div>
+<br><br><br><br><br><br><br><br><br>
+{% include 'footer.html' %}
+  <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@3.5.1/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+</body>
+</html>

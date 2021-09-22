@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shoes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+<!...navbar was removed here...>
+{% include 'navbar.html' %}
+   <h1>PRIZZY PRIZE TAG</h1>
+  <br>
+  <section class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div id="carouselWithInterval" class="carousel slide p-20" data-bs-ride="carousel">
+            <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="1000">
+              <img src="../static/shoe 1.jpeg" class="d-block w-100 img-fluid" alt="Slide 1">
+            </div>
+            <div class="carousel-item" data-bs-interval="1000">
+              <img src="../static/kids 4.jpg" class="d-block w-100 img-fluid" alt="Slide 2">
+            </div>
+            <div class="carousel-item">
+              <img src="../static/girls boots 2.jpeg" class="d-block w-100 img-fluid" alt="Slide 3">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselWithInterval" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselWithInterval" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br><br>
+  <div class="container">
+    {% if session.user %}
+    Welcome:
+    {{session.user}} <a href="/logout">Logout</a>
+
+  {% else %}
+    Not logged in<a href="/log in">Login Here</a>
+
+  {% endif %}
+    <h3>TOP SELLING BRANDS</h3>
+    <br>
+      <section class="row">
+        {% for row in rows %}
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-body text-center">
+                <h3>{{row[0]}}</h3>
+                <br>
+                <img src="../static/{{row[6]}}" alt="" class="img-fluid" width="100%">
+                <br><br>
+                <p class="text-muted">{{row[2]}}</p>
+                <b>
+                  <strike>KES{{row[12]}}</strike>  <b class="text-info">KES{{row[11]}}</b>
+                </b>
+                <br><br>
+                <a href="/single/{{row[1]}}" class="btn btn-outline-info">READ MORE</a>
+              </div>
+            </div>
+            <br><br>
+          </div>
+        {% endfor %}
+      </section>
+  </div>
+<!...footer was removed here...>
+{% include 'footer.html' %}
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@3.5.1/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+</body>
+</html>

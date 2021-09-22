@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>single</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+<!...navbar was removed here...>
+{% include 'navbar.html' %}
+<div class="container">
+ <section class="row">
+     <div class="col-md-4" style="padding:2%">
+         <img src="../static/{{row[6]}}" alt=""  class="img-fluid img-thumbnail" width="100%">
+     </div>
+
+     <div class="col-md-5" style="padding:2%">
+         <span style="color:grey;">Brand:</span>
+         <span style="color:grey;"><b>{{row[4]}}</b></span>
+         <br><br>
+
+         <span style="color:grey;">Category:</span>
+         <span style="color:orange;">{{row[5]}}</span>
+         <br><br>
+         <b>Description</b>
+         <br>
+         <p style="color:grey;">{{row[3]}}</p>
+
+          <span style="color:grey;">Size:</span>
+         <span style="color:orange;"><b>{{row[9]}}</b></span>
+         <br><br>
+         <span style="color:grey;">Color:</span>
+         <span style="color:orange;">{{row[8]}}</span>
+     </div>
+
+     <div class="col-md-3" style="padding:2%">
+         <br>
+         <h4><b style="color:orange;">KES {{row[11]}}</b></h4>
+         <span style="color:grey;"><strike> KES {{row[12]}}</strike></span>
+         <br><br>
+         <span class="badge bg-danger">KES {{row[10]}} discount</span>
+         <br><br>
+
+         {% if session.user %}
+         <b>Want to Pay Enter Phone Below</b>
+         <form action="/mpesa_payment" method="post">
+              <input type="number" placeholder="Qtty" class="form-control">
+             <br>
+             <input type="tel" name="phone" placeholder="Your phone +254..">
+             <br>
+             <input type="hidden" value="{{row[11]}}" name="amount">
+             <br>
+             <input type="hidden" value="{{row[1]}}" name="product_id">
+             <input type="submit" value="BUY NOW" class="btn btn-outline-success">
+         </form>
+         {% else %}
+            LOGIN TO MAKE PAYMENT
+         {% endif %}
+         <br><br>
+         <b>ESTIMATED TIME</b>
+         <br>
+         <span>2 to 5 Business Working Days</span>
+         <a href="/contuct_us">CONTACT US</a>
+     </div>
+ </section>
+    <br>
+    {% if session.user %}
+    <a href="/logout">LOGOUT</a><br>
+    <br>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          <li class="text-info">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    {% block body %}{% endblock %}
+
+    <section class="row">
+        <div class="col-md-6">
+            <form action="">
+                <h4>Write a Review</h4>
+                <textarea name="" id="" cols="30" rows="4" class="form-control"></textarea>
+                <br>
+                <input type="submit" value="SEND REVIEW" class="btn btn-outline-success">
+            </form>
+        </div>
+    </section>
+    {% else %}
+        <b>Login to post a review <a href="/log-in">Login here</a></b>
+    {% endif %}
+</div>
+<br><br>
+<!...footer was removed here...>
+{% include 'footer.html' %}
+</body>
+</html>
